@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Box extends React.Component {
+class Br extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,14 +13,12 @@ class Box extends React.Component {
   }
 
   render() {
-  
     return (
-      <div className="box">
-          {this.props.children}
-
+      <div className="br">
+        {this.props.children}
        </div>
     );
   }
 }
 
-export default Box;
+export default Br;
