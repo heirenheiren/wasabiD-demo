@@ -29,25 +29,34 @@ export const zhongyinRoutes = [
       }
     ]
   },
-  // {
-  //   name: '卡信息管理',
-  //   menu: [
-  //     {
-  //       name: '卡信息列表',
-  //       src: '/CardList.html'
-  //     },
-  //     {
-  //       name: '卡信息推送',
-  //       src: '/CardPush.html'
-  //     }
-  //   ]
-  // },
+  {
+    name: '卡信息管理',
+    menu: [
+      {
+        name: '卡信息列表',
+        src: '/CardList.html'
+      },
+      {
+        name: '卡信息推送',
+        src: '/CardPush.html'
+      }
+    ]
+  },
   {
     name: '系统管理',
     menu: [
       {
         name: '协议维护设置',
         src: '/dealSetting.html'
+      },
+    ]
+  },
+  {
+    name: '骰子管理',
+    menu: [
+      {
+        name: '骰子就是筛子',
+        src: '/flex.html'
       },
     ]
   }
