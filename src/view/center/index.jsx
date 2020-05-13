@@ -19,6 +19,15 @@ class Center extends React.Component {
           
           </div>
           
+          <div className="transition">
+          
+          </div>
+
+          <div class="chest">
+              <div class="buti left side top"></div>
+              <div class="buti center">&hearts;</div>
+              <div class="buti right side"></div>
+          </div>
        </div>
     );
   }
