@@ -32,6 +32,11 @@ let entry = [
     filename: 'device', //文件名，
     title: '后台管理系统-Device布局', // 标题
     src: './view/device/index.jsx' //登陆页面
+  },
+  {
+    filename: 'center', //文件名，
+    title: '后台管理系统-center布局', // 标题
+    src: './view/center/index.jsx' //登陆页面
   }
   
   
