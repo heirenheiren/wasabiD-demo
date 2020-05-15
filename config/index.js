@@ -37,6 +37,16 @@ let entry = [
     filename: 'center', //文件名，
     title: '后台管理系统-center布局', // 标题
     src: './view/center/index.jsx' //登陆页面
+  },
+  {
+    filename: 'freedom', //文件名，
+    title: '后台管理系统-center布局', // 标题
+    src: './view/freedom/index.jsx' //登陆页面
+  },
+  {
+    filename: 'circle', //文件名，
+    title: '后台管理系统-center布局', // 标题
+    src: './view/circle/index.jsx' //登陆页面
   }
   
   
