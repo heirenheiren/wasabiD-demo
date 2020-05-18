@@ -156,9 +156,9 @@ class Index extends React.Component {
     return (
       <div className="body">
           <div className="open" onClick={this.enableDisplay.bind(this)}>点我点我</div>
-          <div className="eject-body" style={{display:this.state.hide?"none":"block"}} onClick={this.disableDisPlay}>
+          <div className="eject-body" style={{display:this.state.hide?"none":"block"}} onClick={this.disableDisPlay} onMouseUp={this.onMouseUp}>
             <div className="eject-box" ref="ejectbox" onMouseMove={this.changeBoxStyle} style={{cursor:this.state.cursor,top:this.state.boxStyle.top,left:this.state.boxStyle.left}}>
-              <div className="eject-box-head" onMouseMove={this.moveBoxPointStyle} style={{cursor:this.state.moveCursor}} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}><span>主席，确定发射导弹吗？</span></div>
+              <div className="eject-box-head" onMouseMove={this.moveBoxPointStyle} style={{cursor:this.state.moveCursor}} onMouseDown={this.onMouseDown}><span>主席，确定发射导弹吗？</span></div>
               <div className="eject-box-content">
                 <input  className="eject-box-content-input" type="text" onChange={this.getInputValue}></input>
               </div>
