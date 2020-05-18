@@ -1,0 +1,96 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    padding:0px;
+    margin: 0px;
+}
+.body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+   
+}
+.open{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.eject-body{ 
+    position:fixed;
+    left:0px;top:0px;
+    width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+    height:100%;
+    filter:alpha(opacity=70);  /*设置透明度为60%*/
+    opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+    z-index:2; 
+    background:gray;
+    display: flex;
+    justify-content: center;
+    
+}
+.eject-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    width: 398px;
+    height: 198px;
+    background-color: #87b1ac;
+    border: 1px solid #ccc;
+    z-index: 3;
+    
+}
+
+.eject-box-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: lightgreen;
+}
+
+.eject-box-content{
+    height: 100px;
+    background-color: aliceblue;
+}
+
+.eject-box-content-input{
+    /* left:0px;top:0px; */
+    width: 394px;;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+    height:94px;
+    margin: 2px;
+    border: 0px solid rgb(255, 255, 255);
+}
+
+.eject-box-tail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 50px;
+    background-color: burlywood;
+}
+
+.eject-box-tail-define,.eject-box-tail-cancle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.eject-box-tail-define{
+    cursor: not-allowed;
+}
+
+.eject-box-tail-cancle{
+    cursor: pointer;
+}
+
+.eject-box-tail-define>span,.eject-box-tail-cancle>span{
+    font-size: 14px;
+    color: #000;
+}

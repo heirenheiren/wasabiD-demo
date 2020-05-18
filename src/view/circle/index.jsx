@@ -7,22 +7,32 @@ class Freedom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      hide:true
     };
   }
 
-
   covercircle() {
-    this.refs.cover.style.display='block';
-    this.refs.await.style.display='block';
-    this.times=setTimeout(() => {
-      this.stop();
-    }, 3000);
+    // this.refs.cover.style.display='block';
+    // this.refs.await.style.display='block';
+    this.setState({
+      hide:false
+    })
+    
+    //打开状态才用定时器
+    if(this.state.hide){
+      this.times=setTimeout(() => {
+        this.stop();
+      }, 3000);
+    }
+    
   }
 
   stop(){
-    this.refs.cover.style.display='none';
-    this.refs.await.style.display='none';
+    // this.refs.cover.style.display='none';
+    // this.refs.await.style.display='none';
+    this.setState({
+      hide:true
+    })
   }
 
   componentWillMount(){
@@ -34,9 +44,8 @@ class Freedom extends React.Component {
     return (
       <div className="body">
           <div className="open" onClick={this.covercircle.bind(this)}>打开弹框</div>
-          <div>
-            <div className="cover" ref="cover"></div>
-            <div className="await" ref="await"></div>
+          <div className="cover" style={{display:this.state.hide?"none":"block"}}>  
+            <div className="await"></div>
           </div>
        </div>
 

@@ -47,6 +47,11 @@ let entry = [
     filename: 'circle', //文件名，
     title: '后台管理系统-center布局', // 标题
     src: './view/circle/index.jsx' //登陆页面
+  },
+  {
+    filename: 'eject', //文件名，
+    title: '后台管理系统-center布局', // 标题
+    src: './view/eject/index.jsx' //登陆页面
   }
   
   

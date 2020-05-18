@@ -15,8 +15,8 @@ html,body{
     width: 200px;
     left: 50%;
     top: 50%;
-    display: none;
-    /* border: solid 1px red; */
+    /* display: none; */
+    border: solid 1px red;
     background:url(./circle.png) no-repeat;
     
     z-index:3;  
@@ -27,7 +27,7 @@ html,body{
     left:0px;top:0px;
     width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
     height:100%;
-    display: none;
+    /* display: none; */
     filter:alpha(opacity=70);  /*设置透明度为60%*/
     opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
     z-index:2; 
