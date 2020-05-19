@@ -16,6 +16,8 @@ class Define extends React.Component {
     let value = this.props.changeDefinePointStyle.value;
     if(value!=null){
       alert(value)
+    }else{
+      
     }
     
   }

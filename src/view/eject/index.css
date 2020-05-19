@@ -38,12 +38,14 @@ html,body{
     transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
     -moz-transform: translate(-50%,-50%);
-    width: 398px;
-    height: 198px;
+    width: 400px;
+    height: 200px;
+    /*margin: 5px;  这一行会影响拖动的方法，导致鼠标跟不上拖动框 */
+    padding: 2px;
     background-color: #87b1ac;
     border: 1px solid #ccc;
     z-index: 3;
-    
+    border-radius: 4px;
 }
 
 .eject-box-head{
@@ -62,9 +64,9 @@ html,body{
 
 .eject-box-content-input{
     /* left:0px;top:0px; */
-    width: 394px;;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
-    height:94px;
-    margin: 2px;
+    width: 396px; /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+    height:100px;
+    /* margin: 2px; */
     border: 0px solid rgb(255, 255, 255);
 }
 
@@ -81,6 +83,23 @@ html,body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    height: 30px;
+    width: 60px;
+    size: 14px;
+    margin-top: 10px;
+    box-shadow: 0 1px white inset;
+}
+
+.eject-box-tail-define:active,.eject-box-tail-cancle:active{
+    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
+    border-color: rgba(0,0,0,.3);
+    background: #bbb;
+}
+
+.eject-box-tail-define:hover{
+    color:rgb(15, 0, 0);
 }
 
 .eject-box-tail-define{

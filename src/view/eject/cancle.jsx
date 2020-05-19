@@ -14,7 +14,7 @@ class Cancle extends React.Component {
 
   cancle(){
     console.log("cancle")
-    this.props.updateEjectDisplay(true)
+    this.props.updateEjectBodyDisplay(true)
   }
 
   render() {

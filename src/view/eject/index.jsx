@@ -8,11 +8,12 @@ import "./index.css";
 class Index extends React.Component {
   constructor(props) {
     super(props);
-    this.updateEjectDisplay= this.updateEjectDisplay.bind(this);
-    this.disableDisPlay= this.disableDisPlay.bind(this);
-    this.changeBoxStyle= this.changeBoxStyle.bind(this);
+    this.enableEjectBodyDisplay= this.enableEjectBodyDisplay.bind(this);
+    this.updateEjectBodyDisplay= this.updateEjectBodyDisplay.bind(this);
+    this.disableEjectBodyDisplay= this.disableEjectBodyDisplay.bind(this);
+    this.changeEjectBoxCursor= this.changeEjectBoxCursor.bind(this);
     this.getInputValue= this.getInputValue.bind(this);
-    this.moveBox= this.moveBox.bind(this);
+    this.moveEjectBox= this.moveEjectBox.bind(this);
     this.onMouseDown= this.onMouseDown.bind(this);
     this.onMouseUp= this.onMouseUp.bind(this);
 
@@ -24,13 +25,23 @@ class Index extends React.Component {
     };
   }
 
-  enableDisplay() {
+  componentDidMount(){
+    console.log("componentDidMount")
+  }
+
+  updateEjectBodyDisplay(value){
+    this.setState({
+      hide:value
+    })
+  }
+  
+  enableEjectBodyDisplay() {
     this.setState({
       hide:false
     })
   }
 
-  disableDisPlay(event){
+  disableEjectBodyDisplay(event){
     //console.log(event);
     let position = this.refs.ejectbox.getBoundingClientRect();
     let top = position.top;
@@ -46,51 +57,51 @@ class Index extends React.Component {
     }
   }
 
-  componentDidMount(){
-    console.log("componentDidMount")
+  changeEjectBoxCursor(event){
+    this.getDirection(this.refs.ejectbox,event);
   }
 
-  updateEjectDisplay(value){
-    //console.log(value);
-    this.setState({
-      hide:value
-    })
-  }
+  //获取方向
+  getDirection(targetElement,event) {
+    let position=targetElement.getBoundingClientRect();//获取div的位置信息
+    //此处计算方向与光标图形分开，
+    //当缩小时，要将方向向里多计算一点，否则缩小不流畅
+    let  xPos, yPos, width, height, left, top, offsetX, offsetY, offset;
 
-  changeBoxStyle(event){
-    this.setState({
-      cursor:"default"
-    })
-    let position = this.refs.ejectbox.getBoundingClientRect();
-    //console.log(position.style)
-    let offsetX = event.nativeEvent.offsetX;
-    let offsetY = event.nativeEvent.offsetY;
-    if(offsetX<=5 || position.width-offsetX<=5){
-      if(offsetY<=5){
-        this.setState({
-          cursor:"nwse-resize"
-        })
-      }else if(position.height-offsetY<=5){
-        this.setState({
-          cursor:"nesw-resize"
-        })
-      }else{
-        this.setState({
-          cursor:"ew-resize"
-        })
-      }
-    }else if(offsetY<=5 || position.height-offsetY<=5){
-      //console.log("Y")
-      this.setState({
-        cursor:"ns-resize"
-      })
-    }else{
-      this.setState({
-        cursor:"default"
-      })
+    width = position.width;//弹出框长宽
+    height = position.height;
+
+    left = position.left;//弹出框到浏览器边框距离
+    top = position.top;
+
+    xPos = event.clientX;//鼠标到浏览器边框距离
+    yPos = event.clientY;
+
+    offsetX = event.nativeEvent.offsetX;//鼠标到弹出框边框距离
+    offsetY = event.nativeEvent.offsetY;
+
+    offset = 5;
+
+    let cursor = "";
+    if ((xPos <= width + left + offset && xPos >= width + left - offset)
+          || (xPos <= left + offset && xPos >= left - offset)) {
+        cursor += "ew";
+    }
+    if ((yPos <= height + top + offset && yPos >= height + top - offset)
+          || (yPos <= top + offset && yPos >= top - offset)) {
+        cursor += "ns";
+    }
+    
+    cursor = cursor == "ewns" ? "nwse" : cursor;
+
+    //把东北和西南角单独处理
+    if(((xPos <= width + left + offset && xPos >= width + left - offset) && (yPos <= top + offset && yPos >= top - offset))
+        || ((xPos <= left + offset && xPos >= left - offset) && (yPos <= height + top + offset && yPos >= height + top - offset))){
+      cursor = "nesw";
     }
 
-    
+    targetElement.style.cursor = cursor ? cursor + "-resize" : "default";//设置鼠标样式
+    return cursor;
   }
 
   getInputValue(event){
@@ -107,10 +118,9 @@ class Index extends React.Component {
     
   }
 
-  moveBox(event){
+  moveEjectBox(event){
     window.onselectstart = function(){return false;}
     if(this.ifOnMouseDown==true){
-      
       let moveX = event.clientX-this.clientX;
       let moveY = event.clientY-this.clientY;
       
@@ -118,23 +128,17 @@ class Index extends React.Component {
       let left = position.offsetLeft;
       let top = position.offsetTop;
 
-      //console.log(left,top);
-
       this.refs.ejectbox.style.top=(top+moveY)+"px";
       this.refs.ejectbox.style.left=(left+moveX)+"px";
+      //必须重置，否则鼠标定位会越位
       this.clientX = event.clientX;
       this.clientY = event.clientY;
-      // const boxStyle = Object.assign({}, this.state.boxStyle, {top:clientY+"px",left:clientX+"px"})
-      // this.setState({
-      //   boxStyle:boxStyle
-      // })
     }
   }
 
   onMouseDown(event){
     this.clientX = event.clientX;
-    this.clientY = event.clientY;
-    
+    this.clientY = event.clientY; 
     this.ifOnMouseDown=true;
   }
 
@@ -142,25 +146,19 @@ class Index extends React.Component {
     this.ifOnMouseDown=false;
   }
 
-  show(event){
-    document.body.addEventListener("onMouseDown",this.onMouseDownClick);
-    document.body.addEventListener("onMouseMove",this.moveBoxClick);
-    document.body.addEventListener("onMouseMove",this.onMouseUpClick);
-  }
-
   render() {
     return (
       <div className="body">
-          <div className="open" onClick={this.enableDisplay.bind(this)}>点我点我</div>
-          <div className="eject-body" style={{display:this.state.hide?"none":"block"}} onMouseMove={this.moveBox} onClick={this.disableDisPlay} onMouseUp={this.onMouseUp}>
-            <div className="eject-box" ref="ejectbox" onMouseMove={this.changeBoxStyle} style={{cursor:this.state.cursor}}>
+          <div className="open" onClick={this.enableEjectBodyDisplay}>点我点我</div>
+          <div className="eject-body" onClick={this.disableEjectBodyDisplay} onMouseMove={this.moveEjectBox} onMouseUp={this.onMouseUp} style={{display:this.state.hide?"none":"block"}}>
+            <div className="eject-box" ref="ejectbox" onMouseMove={this.changeEjectBoxCursor} style={{cursor:this.state.cursor}}>
               <div className="eject-box-head" onMouseDown={this.onMouseDown}><span>主席，确定发射导弹吗？</span></div>
               <div className="eject-box-content">
-                <input  className="eject-box-content-input" type="text" onChange={this.getInputValue}></input>
+                <textarea  className="eject-box-content-input" onChange={this.getInputValue}></textarea>
               </div>
               <div className="eject-box-tail">
                 <Define changeDefinePointStyle={this.state.defineValue}></Define>
-                <Cancle updateEjectDisplay={this.updateEjectDisplay}></Cancle>
+                <Cancle updateEjectBodyDisplay={this.updateEjectBodyDisplay}></Cancle>
               </div>
             </div>
           </div>
