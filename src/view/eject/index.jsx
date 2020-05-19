@@ -12,15 +12,13 @@ class Index extends React.Component {
     this.disableDisPlay= this.disableDisPlay.bind(this);
     this.changeBoxStyle= this.changeBoxStyle.bind(this);
     this.getInputValue= this.getInputValue.bind(this);
-    this.moveBoxPointStyle= this.moveBoxPointStyle.bind(this);
+    this.moveBox= this.moveBox.bind(this);
     this.onMouseDown= this.onMouseDown.bind(this);
     this.onMouseUp= this.onMouseUp.bind(this);
 
     this.state = {
       hide:true,
-      boxStyle:{cursor:"default",top:null,left:null},
       cursor:"default",
-      moveCursor:"default",
       defineValue:{cursor:"not-allowed",value:null},
       ifOnMouseDown:false
     };
@@ -109,56 +107,54 @@ class Index extends React.Component {
     
   }
 
-  moveBoxPointStyle(event){
-    let position = this.refs.ejectbox.getBoundingClientRect();
-    let width = position.width;
-    let height = position.height;
-    let offsetX = event.nativeEvent.offsetX;
-    let offsetY = event.nativeEvent.offsetY;
-    if((offsetX>10&&offsetY>10)&&(width-10>offsetX&&height-10>offsetY)){
-      //console.log("显示手抓光标可以拖动弹出框")
-      this.setState({
-        moveCursor:"grabbing"
-      })
-    }else{
-      this.setState({
-        moveCursor:"default"
-      })
-    }
+  moveBox(event){
+    window.onselectstart = function(){return false;}
+    if(this.ifOnMouseDown==true){
+      
+      let moveX = event.clientX-this.clientX;
+      let moveY = event.clientY-this.clientY;
+      
+      let position = this.refs.ejectbox;
+      let left = position.offsetLeft;
+      let top = position.offsetTop;
 
-    if(this.state.ifOnMouseDown==true){
-      console.log("点击拖动弹出框");
-      let clientX = event.clientX;
-      let clientY = event.clientY;
-      console.log(clientX,clientY);
-      const boxStyle = Object.assign({}, this.state.boxStyle, {top:clientY+"px",left:clientX+"px"})
-      this.setState({
-        boxStyle:boxStyle
-      })
+      //console.log(left,top);
+
+      this.refs.ejectbox.style.top=(top+moveY)+"px";
+      this.refs.ejectbox.style.left=(left+moveX)+"px";
+      this.clientX = event.clientX;
+      this.clientY = event.clientY;
+      // const boxStyle = Object.assign({}, this.state.boxStyle, {top:clientY+"px",left:clientX+"px"})
+      // this.setState({
+      //   boxStyle:boxStyle
+      // })
     }
   }
 
   onMouseDown(event){
-    this.setState({
-      ifOnMouseDown:true
-    })
+    this.clientX = event.clientX;
+    this.clientY = event.clientY;
     
+    this.ifOnMouseDown=true;
   }
 
   onMouseUp(event){
-    this.setState({
-      ifOnMouseDown:false
-    })
+    this.ifOnMouseDown=false;
+  }
+
+  show(event){
+    document.body.addEventListener("onMouseDown",this.onMouseDownClick);
+    document.body.addEventListener("onMouseMove",this.moveBoxClick);
+    document.body.addEventListener("onMouseMove",this.onMouseUpClick);
   }
 
   render() {
-  
     return (
       <div className="body">
           <div className="open" onClick={this.enableDisplay.bind(this)}>点我点我</div>
-          <div className="eject-body" style={{display:this.state.hide?"none":"block"}} onClick={this.disableDisPlay} onMouseUp={this.onMouseUp}>
-            <div className="eject-box" ref="ejectbox" onMouseMove={this.changeBoxStyle} style={{cursor:this.state.cursor,top:this.state.boxStyle.top,left:this.state.boxStyle.left}}>
-              <div className="eject-box-head" onMouseMove={this.moveBoxPointStyle} style={{cursor:this.state.moveCursor}} onMouseDown={this.onMouseDown}><span>主席，确定发射导弹吗？</span></div>
+          <div className="eject-body" style={{display:this.state.hide?"none":"block"}} onMouseMove={this.moveBox} onClick={this.disableDisPlay} onMouseUp={this.onMouseUp}>
+            <div className="eject-box" ref="ejectbox" onMouseMove={this.changeBoxStyle} style={{cursor:this.state.cursor}}>
+              <div className="eject-box-head" onMouseDown={this.onMouseDown}><span>主席，确定发射导弹吗？</span></div>
               <div className="eject-box-content">
                 <input  className="eject-box-content-input" type="text" onChange={this.getInputValue}></input>
               </div>
@@ -169,7 +165,6 @@ class Index extends React.Component {
             </div>
           </div>
        </div>
-
     );
   }
 }

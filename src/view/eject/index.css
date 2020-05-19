@@ -52,6 +52,7 @@ html,body{
     align-items: center;
     height: 50px;
     background-color: lightgreen;
+    cursor: grabbing;
 }
 
 .eject-box-content{
