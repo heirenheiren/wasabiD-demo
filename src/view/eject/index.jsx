@@ -74,16 +74,16 @@ class Index extends React.Component {
 
   moveEjectBox(event){
     window.onselectstart = function(){return false;}
+    let box = this.refs.ejectbox;
     if(this.ifOnMouseDown==true){
       let moveX = event.clientX-this.clientX;
       let moveY = event.clientY-this.clientY;
       
-      let position = this.refs.ejectbox;
-      let left = position.offsetLeft;
-      let top = position.offsetTop;
+      let left = box.offsetLeft;
+      let top = box.offsetTop;
 
-      this.refs.ejectbox.style.top=(top+moveY)+"px";
-      this.refs.ejectbox.style.left=(left+moveX)+"px";
+      box.style.top=(top+moveY)+"px";
+      box.style.left=(left+moveX)+"px";
       //必须重置，否则鼠标定位会越位
       this.clientX = event.clientX;
       this.clientY = event.clientY;
@@ -98,6 +98,12 @@ class Index extends React.Component {
 
   onMouseUp(event){
     this.ifOnMouseDown=false;
+
+    this.oldClientX=null;
+    this.oldClientY=null;
+
+    this. oldwidth=null;
+    this. oldheight=null;
   }
 
   //获取方向
@@ -119,7 +125,7 @@ class Index extends React.Component {
     offsetX = event.nativeEvent.offsetX;//鼠标到弹出框边框距离
     offsetY = event.nativeEvent.offsetY;
 
-    offset = 5;
+    offset = 6;
 
     let cursor = "";
     if ((xPos <= width + left + offset && xPos >= width + left - offset)
@@ -145,20 +151,32 @@ class Index extends React.Component {
 
   changeEjectBoxCursorAndMove(event){
     let box = this.refs.ejectbox;
+    let position=box.getBoundingClientRect();
     let direction = this.getDirection(box,event);
     this.direction = direction;
     if(this.oldClientX){
       if(direction&&direction=="ew"){
-        box.style.width=(this.oldwidth+(event.clientX-this.oldClientX))+"px";
-        this.oldwidth = box.style.width;
+        
+        box.style.width=(position.width+(event.clientX-this.oldClientX))+"px";
+        //console.log(event.clientX);
+        //console.log(this.oldClientX);
+        console.log(position.width+"+("+event.clientX+"-"+this.oldClientX+")="+box.style.width);
+        //console.log(box.style.width);
+        position.width = position.width+(event.clientX-this.oldClientX);
+        this.oldClientX=event.clientX;
+        
       }else if(direction&&direction=="ns"){
-        box.style.height=(this.oldheight+(event.clientY-this.oldClientY))+"px";
-        this.oldheight = box.style.height;
+        box.style.height=(position.height+(event.clientY-this.oldClientY))+"px";
+        //this.oldheight = box.style.height;
+        position.height=(position.height+(event.clientY-this.oldClientY));
+        this.oldClientY=event.clientY;
       }else if(direction){
-        box.style.width=(this.oldwidth+(event.clientX-this.oldClientX))+"px";
-        box.style.height=(this.oldheight+(event.clientY-this.oldClientY))+"px";
-        this.oldwidth = box.style.width;
-        this.oldheight = box.style.height;
+        box.style.width=(position.width+(event.clientX-this.oldClientX))+"px";
+        box.style.height=(position.height+(event.clientY-this.oldClientY))+"px";
+        //this.oldwidth = box.style.width;
+        //this.oldheight = box.style.height;
+        this.oldClientX=event.clientX;
+        this.oldClientY=event.clientY;
       }
     }
   }
@@ -171,23 +189,19 @@ class Index extends React.Component {
       this.oldClientX=event.clientX;
       this.oldClientY=event.clientY;
 
-      this. oldwidth=position.width;
-      this. oldheight=position.height;
+      this.oldwidth=position.width;
+      this.oldheight=position.height;
     }else{
       this.oldClientX=null;
       this.oldClientY=null;
 
-      this. oldwidth=null;
-      this. oldheight=null;
+      this.oldwidth=null;
+      this.oldheight=null;
     }
   }
 
   dragEjectBoxMouseUp(event){
-      this.oldClientX=null;
-      this.oldClientY=null;
-
-      this. oldwidth=null;
-      this. oldheight=null;
+      
   }
 
   render() {
