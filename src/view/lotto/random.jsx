@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "./index.css";
+import "./random.css";
 
 
-class Index extends React.Component {
+class Random extends React.Component {
   constructor(props) {
     super(props);
   
@@ -13,16 +13,16 @@ class Index extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Index")
+    console.log("Random")
   }
 
   render() {
     return (
-      <div className="global">
+      <div className="glrandomobal">
           
        </div>
     );
   }
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(<Random />, document.getElementById('root'));

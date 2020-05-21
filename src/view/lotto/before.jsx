@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "./index.css";
+import "./before.css";
 
 
-class Index extends React.Component {
+class Before extends React.Component {
   constructor(props) {
     super(props);
   
@@ -13,16 +13,16 @@ class Index extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Index")
+    console.log("Before")
   }
 
   render() {
     return (
-      <div className="global">
+      <div className="before">
           
        </div>
     );
   }
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(<Before />, document.getElementById('root'));
