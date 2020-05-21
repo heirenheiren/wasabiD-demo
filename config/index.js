@@ -52,6 +52,11 @@ let entry = [
     filename: 'eject', //文件名，
     title: '后台管理系统-center布局', // 标题
     src: './view/eject/index.jsx' //登陆页面
+  },
+  {
+    filename: 'lotto', //文件名，
+    title: '后台管理系统-center布局', // 标题
+    src: './view/lotto/index.jsx' //登陆页面
   }
   
   
