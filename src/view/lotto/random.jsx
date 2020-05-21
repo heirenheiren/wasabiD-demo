@@ -18,11 +18,18 @@ class Random extends React.Component {
 
   render() {
     return (
-      <div className="glrandomobal">
-          
+      <div className="random">
+          <div className="random-top">
+            <div className="random-top-left"></div>
+            <div className="random-top-right"></div>
+          </div>
+          <div className="random-bottom">
+            <div className="random-bottom-left"></div>
+            <div className="random-bottom-right"></div>
+          </div>
        </div>
     );
   }
 }
 
-ReactDOM.render(<Random />, document.getElementById('root'));
+export default Random;

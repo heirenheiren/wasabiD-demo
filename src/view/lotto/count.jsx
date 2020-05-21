@@ -25,4 +25,4 @@ class Count extends React.Component {
   }
 }
 
-ReactDOM.render(<Count />, document.getElementById('root'));
+export default Count;

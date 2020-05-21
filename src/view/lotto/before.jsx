@@ -19,10 +19,18 @@ class Before extends React.Component {
   render() {
     return (
       <div className="before">
-          
+          <div className="before-header">
+            <div className="before-header-left">— 前区 —　至少选5个</div>
+            <div className="before-header-right"></div>
+          </div>
+          <div className="before-number"></div>
+          <div className="before-choose">
+            <div className="before-choose-left"></div>
+            <div className="before-choose-right"></div>
+          </div>
        </div>
     );
   }
 }
 
-ReactDOM.render(<Before />, document.getElementById('root'));
+export default Before;
