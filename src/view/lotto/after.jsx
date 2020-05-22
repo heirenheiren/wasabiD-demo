@@ -21,7 +21,7 @@ class After extends React.Component {
     return (
       <div className="after">
           <div className="after-header">
-            <div className="after-header-left">— <span class="purple">后区</span> —　至少选<em className="red">2</em>个</div>
+            <div className="after-header-left">— <span className="purple">后区</span> —　至少选<em className="red">2</em>个</div>
             <div className="after-header-right"></div>
           </div>
           <div className="after-number"></div>

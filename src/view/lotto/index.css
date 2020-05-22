@@ -42,8 +42,6 @@ html,body{
 
 .red{
     color: #f63f3f;
-    font-style: normal;
-    
 }
 .orange {
     color: #ff5b1a;
@@ -52,4 +50,8 @@ html,body{
 .purple{
     color: #6857ca;
     font-size: 18px;
+}
+
+em{
+    font-style: normal;
 }

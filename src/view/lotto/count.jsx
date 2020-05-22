@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "./index.css";
 import "./count.css";
 
 
@@ -19,7 +20,7 @@ class Count extends React.Component {
   render() {
     return (
       <div className="count">
-          您选择了 0 个前区号码， 0 个后区号码，共 0 注，共 0.00 元
+          <p className="count-gray">您选择了 <em className="orange">3</em> 个前区号码， <em className="purple">0</em> 个后区号码，共 <em className="red">0</em> 注，共 <em className="red">0.00</em> 元</p>
        </div>
     );
   }

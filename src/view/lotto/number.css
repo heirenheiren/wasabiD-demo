@@ -1,0 +1,9 @@
+.ball{
+    display: inline-block;
+    zoom: 1;
+    height: 38px;
+    margin: 0 auto;
+    background: url(./sprite.png)  no-repeat;
+    cursor: pointer;
+    
+}
