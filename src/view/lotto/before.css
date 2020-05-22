@@ -1,4 +1,28 @@
 .before{
-    width: 880px;
-    border-radius: 1px;
+    width: 590px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.before-header{
+    height: 32px;
+    color: #A5A5A5;
+    font: 14px;
+    text-align: center;
+}
+.before-number{
+    height: 197px;
+    border: 1px solid #f1f4d7;
+    background-color: #fffffb;
+    color: #555555;
+    font: 14px;
+    padding: 10px 16px 5px;
+}
+.before-choose{
+    height: 48px;
+    color: #555555;
+    font: 14px;
+    padding: 12px 0px;
+}
+

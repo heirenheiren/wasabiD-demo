@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "./index.css";
 import "./before.css";
 
 
@@ -20,7 +21,7 @@ class Before extends React.Component {
     return (
       <div className="before">
           <div className="before-header">
-            <div className="before-header-left">— 前区 —　至少选5个</div>
+            <div className="before-header-left">— <span className="orange">前区</span> —　至少选<em className="red">5</em>个</div>
             <div className="before-header-right"></div>
           </div>
           <div className="before-number"></div>

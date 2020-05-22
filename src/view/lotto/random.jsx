@@ -24,8 +24,8 @@ class Random extends React.Component {
             <div className="random-top-right"></div>
           </div>
           <div className="random-bottom">
-            <div className="random-bottom-left"></div>
-            <div className="random-bottom-right"></div>
+            <div className="random-bottom-left">倍数</div>
+            <div className="random-bottom-right">金额 2.00元  (1注)</div>
           </div>
        </div>
     );

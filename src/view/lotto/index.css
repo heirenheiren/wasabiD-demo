@@ -3,9 +3,12 @@ html,body{
     width: 100%;
     padding:0px;
     margin: 0px;
+    background-color: #ccc;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-.global .choose{
+.global{
     position:fixed;
     left:0px;top:0px;
     top: 50%;
@@ -13,10 +16,40 @@ html,body{
     transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
     -moz-transform: translate(-50%,-50%);
-    
-    width: 880px;
-    height: 600px;
-    border-radius: 10%;
-    background-color: #ad1c1c;
 
+    width: 880px;
+    height: 625;
+    border-radius: 1%;
+    background-color: #ffffff;
+    padding:25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.choose{
+    height: 277px;
+    
+    color: #555555;
+    font: 14px;
+    padding: 15px 25px 5px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.red{
+    color: #f63f3f;
+    font-style: normal;
+    
+}
+.orange {
+    color: #ff5b1a;
+    font-size: 18px;
+}
+.purple{
+    color: #6857ca;
+    font-size: 18px;
 }
