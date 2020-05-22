@@ -10,7 +10,7 @@ class Before extends React.Component {
     super(props);
   
     this.state = {
-      
+      beforeBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"]
     };
   }
 
@@ -26,11 +26,14 @@ class Before extends React.Component {
             <div className="before-header-right"></div>
           </div>
           <div className="before-number">
-            <Number></Number>
+            <ul>
+              {this.state.beforeBallNumber.map(number=><Number key={number} number={number} borderColor="before"></Number>)}
+            </ul>
           </div>
           <div className="before-choose">
-            <div className="before-choose-left"></div>
-            <div className="before-choose-right"></div>
+            <div className="before-choose-left">滚动</div>
+            <div className="before-choose-middle">选择前区</div>
+            <div className="before-choose-right">清</div>
           </div>
        </div>
     );
