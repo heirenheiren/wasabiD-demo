@@ -10,18 +10,10 @@ class After extends React.Component {
     this.chooseBallBack= this.chooseBallBack.bind(this);
   
     this.state = {
+      clearBackground:false,
       chooseAfterBallNumbers:[],
       afterBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12"]
     };
-  }
-
-  componentDidMount(){
-    //console.log("After:componentDidMount")
-  }
-
-  //react函数每次更新组件（或者数据）都需要this.setState(state)来进行，这里补充每次调用setState()结束之后都会自动调用componentDidUpdate()钩子，因此，如果有每次更新都要进行的行动都可以写在这个钩子中。
-  componentDidUpdate(){
-    //console.log("After:componentDidUpdate")
   }
 
   chooseBallBack(chooseNumber){
@@ -30,6 +22,18 @@ class After extends React.Component {
         chooseAfterBallNumbers:chooseAfterBallNumbers.includes(chooseNumber)?chooseAfterBallNumbers.filter(item=>item!==chooseNumber):[...chooseAfterBallNumbers,chooseNumber]
       }
     ),()=>{
+      this.props.chooseBallBackToIndex(this.state.chooseAfterBallNumbers,"after");
+    })
+  }
+
+  onClick=(e)=>{
+    this.setState(({chooseBeforeBallNumbers})=>(
+      {
+        clearBackground:true,
+        chooseAfterBallNumbers:[]
+      }
+    ),()=>{
+      //setState改变值并触发调用render刷新之后会走这里
       this.props.chooseBallBackToIndex(this.state.chooseAfterBallNumbers,"after");
     })
   }
@@ -43,12 +47,13 @@ class After extends React.Component {
           </div>
           <div className="after-number">
             <ul>
-              {this.state.afterBallNumber.map(number=><Number key={number} number={number} borderColor="after" chooseBallBack={this.chooseBallBack}></Number>)}
+              {this.state.afterBallNumber.map(number=><Number key={number} clearBackground={this.state.clearBackground} number={number} borderColor="after" chooseBallBack={this.chooseBallBack}></Number>)}
             </ul>
           </div>
           <div className="after-choose">
-            <div className="after-choose-left">选择后区</div>
-            <div className="after-choose-right">清</div>
+            <select className="after-choose-left">...</select>
+            <span className="after-choose-middle">选择后区</span>
+            <span className="after-choose-right" onClick={this.onClick}>清</span>
           </div>
        </div>
     );

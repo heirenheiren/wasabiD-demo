@@ -10,17 +10,10 @@ class Before extends React.Component {
     this.chooseBallBack= this.chooseBallBack.bind(this);
 
     this.state = {
+      clearBackground:false,
       chooseBeforeBallNumbers:[],
       beforeBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"]
     };
-  }
-
-  componentDidMount(){
-    //console.log("Before:componentDidMount")
-  }
-
-  componentDidUpdate(){
-    //console.log("Before:componentDidUpdate")
   }
 
   chooseBallBack(chooseNumber){
@@ -29,6 +22,19 @@ class Before extends React.Component {
         chooseBeforeBallNumbers:chooseBeforeBallNumbers.includes(chooseNumber)?chooseBeforeBallNumbers.filter(item=>item!==chooseNumber):[...chooseBeforeBallNumbers,chooseNumber]
       }
     ),()=>{
+      //setState改变值并触发调用render刷新之后会走这里
+      this.props.chooseBallBackToIndex(this.state.chooseBeforeBallNumbers,"before");
+    })
+  }
+
+  onClick=(e)=>{
+    this.setState(({chooseBeforeBallNumbers})=>(
+      {
+        clearBackground:true,
+        chooseBeforeBallNumbers:[]
+      }
+    ),()=>{
+      //setState改变值并触发调用render刷新之后会走这里
       this.props.chooseBallBackToIndex(this.state.chooseBeforeBallNumbers,"before");
     })
   }
@@ -42,13 +48,13 @@ class Before extends React.Component {
           </div>
           <div className="before-number">
             <ul>
-              {this.state.beforeBallNumber.map(number=><Number key={number} number={number} borderColor="before" chooseBallBack={this.chooseBallBack}></Number>)}
+              {this.state.beforeBallNumber.map(number=><Number key={number} clearBackground={this.state.clearBackground} number={number} borderColor="before" chooseBallBack={this.chooseBallBack}></Number>)}
             </ul>
           </div>
           <div className="before-choose">
-            <div className="before-choose-left">滚动</div>
-            <div className="before-choose-middle">选择前区</div>
-            <div className="before-choose-right">清</div>
+            <select className="before-choose-left">...</select>
+            <span className="before-choose-middle">选择前区</span>
+            <span className="before-choose-right" onClick={this.onClick}>清</span>
           </div>
        </div>
     );

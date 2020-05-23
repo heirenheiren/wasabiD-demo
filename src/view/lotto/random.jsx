@@ -12,10 +12,6 @@ class Random extends React.Component {
     };
   }
 
-  componentDidMount(){
-    //console.log("Random:componentDidMount")
-  }
-
   render() {
     return (
       <div className="random">

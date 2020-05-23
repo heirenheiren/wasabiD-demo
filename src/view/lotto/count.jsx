@@ -13,14 +13,6 @@ class Count extends React.Component {
     };
   }
 
-  componentDidMount(){
-    //console.log("Count:componentDidMount")
-  }
-  //getDerivedStateFromProps
-  componentDidUpdate(preProps){
-    //console.log(preProps,nextProps)
-  }
-
   render() {
     return (
       <div className="count">

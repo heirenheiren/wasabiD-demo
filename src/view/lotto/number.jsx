@@ -9,17 +9,26 @@ export default class Number extends React.Component {
     this.state = {
       //存储当前数组球的过渡值
       selfBeforNumber:[],
-      selfAfterNumber:[]
+      selfAfterNumber:[],
+      changeColor:false
     };
   }
 
-  componentDidMount(){
-    //console.log("Number:componentDidMount")
+  UNSAFE_componentWillMount(){}
+
+  componentDidMount(){}
+
+  UNSAFE_componentWillReceiveProps(props){
+    console.log(props.clearBackground,)
   }
 
-  componentWillUnmount() {
-    //console.log("Number:componentWillUnmount")
-  }
+  shouldComponentUpdate(props){return true}
+
+  UNSAFE_componentWillUpdate(props){}
+
+  componentDidUpdate(){}
+
+  componentWillUnmount() {}
 
   onClick(chooseNumber,event){
     let target = event.target;
@@ -56,6 +65,7 @@ export default class Number extends React.Component {
   }
 
   render() {
+    //console.log(this.props.clear)
     return (
       <li className="number">
           <b className="ball" onClick={this.onClick.bind(this,this.props.number)} style={{borderColor:this.props.borderColor=="before"?"#f1f4d7":"#e2f0fb"}}>{this.props.number}</b>

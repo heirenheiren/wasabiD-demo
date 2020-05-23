@@ -19,23 +19,14 @@ class Index extends React.Component {
     };
   }
 
-  componentDidMount(){
-    //console.log("Index:componentDidMount")
-  }
-
-  shouldComponentUpdate(nextProps,nextState){
-    //console.log("Index:shouldComponentUpdate",nextProps,nextState)
-    return true;
-  }
-
   chooseBallBackToIndex(chooseNumbers,area){
-    //console.log(chooseNumbers,area)
+    console.log(chooseNumbers,area)
     let count=0
     if(area=="before"){
       this.setState({
         chooseBeforeNumbers:chooseNumbers.length
       })
-      if(chooseNumbers.length>=5){
+      if(chooseNumbers.length>=5&&this.state.chooseAfterNumbers>=2){
         count = this.combinatorialNumber(chooseNumbers.length,5)*this.combinatorialNumber(this.state.chooseAfterNumbers,2)
       }
     }
@@ -44,7 +35,7 @@ class Index extends React.Component {
       this.setState({
         chooseAfterNumbers:chooseNumbers.length
       })
-      if(chooseNumbers.length>=2){
+      if(chooseNumbers.length>=2&&this.state.chooseBeforeNumbers>=5){
         count = this.combinatorialNumber(chooseNumbers.length,2)*this.combinatorialNumber(this.state.chooseBeforeNumbers,5)
       }
     }
