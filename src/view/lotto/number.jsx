@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import "./number.css";
 
 
@@ -8,8 +7,9 @@ export default class Number extends React.Component {
     super(props);
   
     this.state = {
-      chooseBeforeBallNumber:[],
-      chooseAfterBallNumber:[]
+      //存储当前数组球的过渡值
+      selfBeforNumber:[],
+      selfAfterNumber:[]
     };
   }
 
@@ -17,34 +17,49 @@ export default class Number extends React.Component {
     console.log("Number")
   }
 
-  onClick(number,event){
+  componentWillUnmount() {
+    console.log("888888")
+  }
+
+  onClick(chooseNumber,event){
     let target = event.target;
-    target.style.color="#ffffff";
+
     if(this.props.borderColor=="before"){
-      this.setState(({chooseBeforeBallNumber})=>(
-        {
-          chooseBeforeBallNumber:chooseBeforeBallNumber.includes(number)?chooseBeforeBallNumber.filter(item=>item!==number):[...chooseBeforeBallNumber,number]
-        }
-      ))
-      target.style.background="#ff5b1a";
+      console.log(this.state.chooseBeforeBallNumber)
+      if(this.state.selfBeforNumber.includes(chooseNumber)){
+        target.style.background="#fffffb";
+        target.style.color="#555555";
+      }else{
+        target.style.background="#ff5b1a";
+        target.style.color="#ffffff";
+      }
+      this.setState({
+        selfBeforNumber:this.state.selfBeforNumber.includes(chooseNumber)?[]:[chooseNumber]
+      })
     }
     if(this.props.borderColor=="after"){
-      // let arr = this.state.chooseAfterBallNumber.concat([target.textContent]);
+      if(this.state.selfAfterNumber.includes(chooseNumber)){
+        target.style.background="#f6fbff";
+        target.style.color="#555555";
+      }else{
+        target.style.background="#6857ca";
+        target.style.color="#ffffff";
+      }
+      this.setState({
+        selfAfterNumber:this.state.selfAfterNumber.includes(chooseNumber)?[]:[chooseNumber]
+      })
       // this.setState({
-      //   chooseAfterBallNumber:arr
+      //   chooseAfterBallNumber:this.state.chooseAfterBallNumber.concat([number])
       // })
-      this.state.chooseAfterBallNumber.push(number)
-      target.style.background="#6857ca";
+      //this.state.chooseAfterBallNumber.push(number)
     }
-    //console.log([1].concat([2]))
+    this.props.chooseBallBack(chooseNumber);
   }
 
   render() {
-    const chooseBeforeBallNumber = this.state
-    console.log(chooseBeforeBallNumber)
     return (
       <li className="number">
-          <b className="ball" id="getBallId" data-num={this.props.number} onClick={this.onClick.bind(this,this.props.number)} style={{borderColor:this.props.borderColor=="before"?"#f1f4d7":"#e2f0fb"}}>{this.props.number}</b>
+          <b className="ball" onClick={this.onClick.bind(this,this.props.number)} style={{borderColor:this.props.borderColor=="before"?"#f1f4d7":"#e2f0fb"}}>{this.props.number}</b>
           <em className="times">15</em>
       </li>
     );

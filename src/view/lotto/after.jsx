@@ -8,14 +8,24 @@ import "./after.css";
 class After extends React.Component {
   constructor(props) {
     super(props);
+    this.chooseBallBack= this.chooseBallBack.bind(this);
   
     this.state = {
+      chooseAfterBallNumbers:[],
       afterBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12"]
     };
   }
 
   componentDidMount(){
     console.log("After")
+  }
+
+  chooseBallBack(chooseNumber){
+    this.setState(({chooseAfterBallNumbers})=>(
+      {
+        chooseAfterBallNumbers:chooseAfterBallNumbers.includes(chooseNumber)?chooseAfterBallNumbers.filter(item=>item!==chooseNumber):[...chooseAfterBallNumbers,chooseNumber]
+      }
+    ))
   }
 
   render() {
@@ -27,7 +37,7 @@ class After extends React.Component {
           </div>
           <div className="after-number">
             <ul>
-              {this.state.afterBallNumber.map(number=><Number key={number} number={number} borderColor="after"></Number>)}
+              {this.state.afterBallNumber.map(number=><Number key={number} number={number} borderColor="after" chooseBallBack={this.chooseBallBack}></Number>)}
             </ul>
           </div>
           <div className="after-choose">
