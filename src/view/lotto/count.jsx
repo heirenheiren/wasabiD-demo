@@ -17,16 +17,22 @@ class Count extends React.Component {
     //console.log("Count:componentDidMount")
   }
   //getDerivedStateFromProps
-  componentDidUpdate(props){
-    console.log(props)
+  componentDidUpdate(preProps){
+    //console.log(preProps,nextProps)
   }
 
   render() {
     return (
       <div className="count">
-          <p className="count-gray">您选择了 <em className="orange">3</em> 个前区号码， <em className="purple">0</em> 个后区号码，共 <em className="red">0</em> 注，共 <em className="red">0.00</em> 元</p>
+          <p className="count-gray">您选择了 <em className="orange">{this.props.choose.chooseBeforeNumbers}</em> 个前区号码， <em className="purple">{this.props.choose.chooseAfterNumbers}</em> 个后区号码，共 <em className="red">{this.props.choose.count}</em> 注，共 <em className="red">{this.props.choose.count==0?'0.00':this.numFormat(this.props.choose.count*2)}</em> 元</p>
        </div>
     );
+  }
+
+  numFormat(num) {
+    let f = Number(num).toFixed(2)
+    var c = (f.toString().indexOf ('.') !== -1) ? f.toLocaleString() : f.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+    return c;
   }
 }
 
