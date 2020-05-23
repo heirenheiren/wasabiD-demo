@@ -13,7 +13,7 @@ class Random extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Random")
+    //console.log("Random:componentDidMount")
   }
 
   render() {

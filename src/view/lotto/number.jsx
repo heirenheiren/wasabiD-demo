@@ -14,18 +14,17 @@ export default class Number extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Number")
+    //console.log("Number:componentDidMount")
   }
 
   componentWillUnmount() {
-    console.log("888888")
+    //console.log("Number:componentWillUnmount")
   }
 
   onClick(chooseNumber,event){
     let target = event.target;
 
     if(this.props.borderColor=="before"){
-      console.log(this.state.chooseBeforeBallNumber)
       if(this.state.selfBeforNumber.includes(chooseNumber)){
         target.style.background="#fffffb";
         target.style.color="#555555";

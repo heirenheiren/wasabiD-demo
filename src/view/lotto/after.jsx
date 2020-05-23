@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Number from './number';
 import "./index.css";
 import "./after.css";
@@ -17,7 +16,12 @@ class After extends React.Component {
   }
 
   componentDidMount(){
-    console.log("After")
+    //console.log("After:componentDidMount")
+  }
+
+  //react函数每次更新组件（或者数据）都需要this.setState(state)来进行，这里补充每次调用setState()结束之后都会自动调用componentDidUpdate()钩子，因此，如果有每次更新都要进行的行动都可以写在这个钩子中。
+  componentDidUpdate(){
+    //console.log("After:componentDidUpdate")
   }
 
   chooseBallBack(chooseNumber){
@@ -25,7 +29,9 @@ class After extends React.Component {
       {
         chooseAfterBallNumbers:chooseAfterBallNumbers.includes(chooseNumber)?chooseAfterBallNumbers.filter(item=>item!==chooseNumber):[...chooseAfterBallNumbers,chooseNumber]
       }
-    ))
+    ),()=>{
+      this.props.chooseBallBackToIndex(this.state.chooseAfterBallNumbers,"after");
+    })
   }
 
   render() {

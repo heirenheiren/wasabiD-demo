@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Number from './number';
 import "./index.css";
 import "./before.css";
@@ -17,7 +16,11 @@ class Before extends React.Component {
   }
 
   componentDidMount(){
-    console.log("Before")
+    //console.log("Before:componentDidMount")
+  }
+
+  componentDidUpdate(){
+    //console.log("Before:componentDidUpdate")
   }
 
   chooseBallBack(chooseNumber){
@@ -25,7 +28,9 @@ class Before extends React.Component {
       {
         chooseBeforeBallNumbers:chooseBeforeBallNumbers.includes(chooseNumber)?chooseBeforeBallNumbers.filter(item=>item!==chooseNumber):[...chooseBeforeBallNumbers,chooseNumber]
       }
-    ))
+    ),()=>{
+      this.props.chooseBallBackToIndex(this.state.chooseBeforeBallNumbers,"before");
+    })
   }
 
   render() {
