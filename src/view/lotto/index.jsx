@@ -19,8 +19,12 @@ class Index extends React.Component {
     };
   }
 
+  componentDidMount(){
+    console.log("Index")
+  }
+
   chooseBallBackToIndex(chooseNumbers,area){
-    console.log(chooseNumbers,area)
+    //console.log(chooseNumbers,area)
     let count=0
     if(area=="before"){
       this.setState({
@@ -45,7 +49,6 @@ class Index extends React.Component {
   }
 
   render() {
-    //console.log(this.state)
     return (
       <div className="global">
           <div className='choose'>
