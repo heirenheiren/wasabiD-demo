@@ -1,24 +1,109 @@
 .random{
+    width: 828px;
+    text-align: center;
+    background: #fff;
+    padding: 0 25px 30px;
+    border: 1px solid #e3e3e3;
+    border-top: 0;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .random-top{
-    width: 558px;
     height: 180px;
-
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+.random-top-left{
+    width: 580px;
+    margin-left: 60px;
+    float: left;
+    border: 1px solid #d1d1d1;
+    padding-bottom: 27px;
+}
+.random-top-right{
+    margin-left: 10px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+}
+
+.random-top-right .random-top-right-btn{
+    width: 98px;
+    height: 30px;
+    line-height: 30px;
+    color: #0c65c3;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    padding: 0;
+    margin: 0 0 10px;
+    display: inline-block;
+    background: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.random-top-right-btn-p input {
+    width: 40px;
+    font-size: 14px;
+    border: 1px solid #bcbcbc;
+    color: #a5a5a5;
+    float: left;
+    height: 30px;
+    padding: 0 4px;
+    vertical-align: middle;
+}
+
+.random-top-right .random-top-right-btn-p .random-top-right-btn {
+    width: 40px;
+    float: right;
+}
+
+.random-top-right .clear{
+    color: #a5a5a5;
 }
 
 .random-bottom{
     width: 828px;
     height: 47px;
-
+    padding-top: 20px;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
 
+.random-bottom-left{
+    width: 150px;
+}
+.random-bottom-right{
+    margin: 0 60px;
+}
+.random-bottom-left-numsel{
+    margin-right: 8px;
+    width: 100px;
+    display: inline-block;
+}
+
+.random-bottom-left-numsel_l,.random-bottom-left-numsel_r{
+    cursor: pointer;
+    width: 20px;
+    border: 1px solid #B1B1B1;
+}
+
+.random-bottom-left-numsel_m {
+    width: 32px;
+    border: 1px solid #B1B1B1;
+}
+
+.random-bottom-left-numsel_m input {
+    width: 32px;
+    text-align: center;
+    line-height: 19px;
+    border: 0;
 }
