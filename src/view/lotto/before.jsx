@@ -1,12 +1,12 @@
-import React from 'react';
-import Number from './number';
-import "./index.css";
-import "./before.css";
+import React from 'react'
+import Number from './number'
+import "./index.css"
+import "./before.css"
 
 class Before extends React.Component {
   constructor(props) {
-    super(props);
-    this.chooseBallBack= this.chooseBallBack.bind(this);
+    super(props)
+    this.chooseBallBack= this.chooseBallBack.bind(this)
 
     this.state = {
       clearAll:false,
@@ -22,7 +22,7 @@ class Before extends React.Component {
                         {"value":"25","background":"#fffffb","color":"#555555"},{"value":"26","background":"#fffffb","color":"#555555"},{"value":"27","background":"#fffffb","color":"#555555"},{"value":"28","background":"#fffffb","color":"#555555"},
                         {"value":"29","background":"#fffffb","color":"#555555"},{"value":"30","background":"#fffffb","color":"#555555"},{"value":"31","background":"#fffffb","color":"#555555"},{"value":"32","background":"#fffffb","color":"#555555"},
                         {"value":"33","background":"#fffffb","color":"#555555"},{"value":"34","background":"#fffffb","color":"#555555"},{"value":"35","background":"#fffffb","color":"#555555"}]
-    };
+    }
   }
 
   componentDidMount(){
@@ -40,13 +40,13 @@ class Before extends React.Component {
     })
   }
 
-  onClick=(e)=>{
+  onClearClick=(e)=>{
     this.setState(({chooseBeforeBallNumbers})=>(
       {
         beforeBallNumber:this.state.beforeBallNumber.map(item=>{
-          item.value=item.value;
-          item.background="#fffffb";
-          item.color="#555555";
+          item.value=item.value
+          item.background="#fffffb"
+          item.color="#555555"
           return item;
         }),
         chooseBeforeBallNumbers:[],
@@ -134,7 +134,7 @@ class Before extends React.Component {
               }
             </select>
             <span className="before-choose-middle" onClick={this.onChooseClick}>选择前区</span>
-            <span className="before-choose-right" onClick={this.onClick}>清</span>
+            <span className="before-choose-right" onClick={this.onClearClick}>清</span>
           </div>
        </div>
     );

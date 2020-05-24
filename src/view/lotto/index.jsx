@@ -32,6 +32,7 @@ class Index extends React.Component {
       })
       if(chooseNumbers.length>=5&&this.state.chooseAfterNumbers>=2){
         count = this.combinatorialNumber(chooseNumbers.length,5)*this.combinatorialNumber(this.state.chooseAfterNumbers,2)
+        
       }
     }
 
@@ -44,7 +45,7 @@ class Index extends React.Component {
       }
     }
     this.setState({
-      count:count
+      count:count.toFixed(0)
     })
   }
 
@@ -64,6 +65,7 @@ class Index extends React.Component {
   //m中取n个的组合数
   combinatorialNumber(m,n){
     if(m==0)return 0;
+    //console.log(this.factorial(m),this.factorial(m-n)*this.factorial(n))
     return this.factorial(m)/(this.factorial(m-n)*this.factorial(n))
   }
   //n的阶乘

@@ -5,8 +5,8 @@ import "./after.css"
 
 class After extends React.Component {
   constructor(props) {
-    super(props);
-    this.chooseBallBack= this.chooseBallBack.bind(this);
+    super(props)
+    this.chooseBallBack= this.chooseBallBack.bind(this)
   
     this.state = {
       clearAll:false,
@@ -19,7 +19,7 @@ class After extends React.Component {
                        {"value":"07","background":"#f6fbff","color":"#555555"},{"value":"08","background":"#f6fbff","color":"#555555"},
                        {"value":"09","background":"#f6fbff","color":"#555555"},{"value":"10","background":"#f6fbff","color":"#555555"},
                        {"value":"11","background":"#f6fbff","color":"#555555"},{"value":"12","background":"#f6fbff","color":"#555555"}]
-    };
+    }
   }
 
   componentDidMount(){
