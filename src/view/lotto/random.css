@@ -23,6 +23,16 @@
     float: left;
     border: 1px solid #d1d1d1;
     padding-bottom: 27px;
+    position: relative;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.random-top-left-table{
+    width: 562px;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 .random-top-right{
     margin-left: 10px;
@@ -46,6 +56,10 @@
     background: #fff;
     cursor: pointer;
     vertical-align: middle;
+}
+
+.random-top-right .random-top-right-btn:hover{
+    background: #fff7c2;
 }
 
 .random-top-right-btn-p input {

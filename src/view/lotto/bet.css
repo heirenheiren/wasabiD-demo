@@ -1,0 +1,26 @@
+.list-del {
+    width: 20px;
+    height: 16px;
+    top: 2px;
+}
+
+.random-top-left-table td {
+    padding: 4px 0;
+    vertical-align: top;
+    border-bottom: 1px dashed #e8e8e8;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.random-top-left-table .random-top-left-table-td span {
+    margin-right: 20px;
+    display: inline-block;
+    zoom: 1;
+    font-size: 14px;
+}
+
+.list-num-info {
+    color: #a5a5a5;
+    white-space: normal;
+    font-size: 12px;
+}

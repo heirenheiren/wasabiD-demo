@@ -108,3 +108,8 @@ export default class Number extends React.Component {
 
   componentWillUnmount() {}
 }
+
+// Number.prototype={
+//   value:PropType.oneOfType(PropType.string,PropType.number),
+//   type:PropType.oneOf([0,1])
+// }
