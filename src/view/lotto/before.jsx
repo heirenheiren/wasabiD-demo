@@ -9,7 +9,6 @@ class Before extends React.Component {
     this.chooseBallBack= this.chooseBallBack.bind(this)
 
     this.state = {
-      clearAll:false,
       chooseBeforeBallNumbers:[],
       selectNumber:[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],
       //beforeBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"]
@@ -44,13 +43,12 @@ class Before extends React.Component {
     this.setState(({chooseBeforeBallNumbers})=>(
       {
         beforeBallNumber:this.state.beforeBallNumber.map(item=>{
-          item.value=item.value
           item.background="#fffffb"
           item.color="#555555"
+          this.refs[item.value].clearAll()
           return item;
         }),
-        chooseBeforeBallNumbers:[],
-        clearAll:true
+        chooseBeforeBallNumbers:[]
       }
     ),()=>{
       //setState改变值并触发调用render刷新之后会走这里
@@ -120,7 +118,7 @@ class Before extends React.Component {
           </div>
           <div className="before-number">
             <ul>
-              {this.state.beforeBallNumber.map(number=><Number key={number.value} clearAll={this.state.clearAll} number={number} borderColor="before" chooseBallBack={this.chooseBallBack}></Number>)}
+              {this.state.beforeBallNumber.map(number=><Number key={number.value} ref={number.value} number={number} borderColor="before" chooseBallBack={this.chooseBallBack}></Number>)}
             </ul>
           </div>
           <div className="before-choose">

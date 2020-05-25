@@ -19,22 +19,7 @@ export default class Number extends React.Component {
     console.log("Number")
   }
 
-  UNSAFE_componentWillReceiveProps(props){
-    if(props.borderColor=="before"&&props.clearAll==true){
-      this.setState({
-        selfBeforNumber:null
-      },()=>{
-        //console.log(this.state.selfBeforNumber)
-      })
-    }
-    if(props.borderColor=="after"&&props.clearAll==true){
-      this.setState({
-        selfAfterNumber:null
-      },()=>{
-        //console.log(this.state.selfAfterNumber)
-      })
-    }
-  }
+  UNSAFE_componentWillReceiveProps(props){}
 
   shouldComponentUpdate(props){return true}
 
@@ -60,7 +45,7 @@ export default class Number extends React.Component {
       this.setState({
         selfBeforNumber:this.state.selfBeforNumber==chooseNumber?null:chooseNumber
       },()=>{
-        console.log(this.state.selfBeforNumber)
+        //console.log(this.state.selfBeforNumber)
       })
     }
     if(this.props.borderColor=="after"){
@@ -78,12 +63,29 @@ export default class Number extends React.Component {
       this.setState({
         selfAfterNumber:this.state.selfAfterNumber==chooseNumber?null:chooseNumber
       },()=>{
-        console.log(this.state.selfAfterNumber)
+        //console.log(this.state.selfAfterNumber)
       })
       //this.state.chooseAfterBallNumber.concat([number])
       //this.state.chooseAfterBallNumber.push(number)
     }
     this.props.chooseBallBack(chooseNumber);
+  }
+
+  clearAll(){
+    if(this.props.borderColor=="before"){
+      this.setState({
+        selfBeforNumber:null
+      },()=>{
+        //console.log(this.state.selfBeforNumber)
+      })
+    }
+    if(this.props.borderColor=="after"){
+      this.setState({
+        selfAfterNumber:null
+      },()=>{
+        //console.log(this.state.selfAfterNumber)
+      })
+    }
   }
 
   render() {
@@ -102,9 +104,7 @@ export default class Number extends React.Component {
     );
   }
 
-  componentDidUpdate(){
-    //console.log(1)
-  }
+  componentDidUpdate(){}
 
   componentWillUnmount() {}
 }
