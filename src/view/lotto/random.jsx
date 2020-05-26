@@ -6,11 +6,12 @@ import "./random.css"
 class Random extends React.Component {
   constructor(props) {
     super(props);
-  
+    this.deleteOneBet = this.deleteOneBet.bind(this);
+
     this.state = {
       betNum:10,
       times:1,
-      list:[],
+      betList:[],
       account:0,
       price:2.00
     };
@@ -35,7 +36,7 @@ class Random extends React.Component {
     times = times<=1?1:times
     this.setState({
       times:times,
-      account:this.state.list.length*2*times,
+      account:this.state.betList.length*2*times,
       price:2*times
     })
   }
@@ -113,17 +114,27 @@ class Random extends React.Component {
     if(t==10){
       t = this.refs.bet.value
     }
-    let list = this.state.list.concat(this.randomNumber(t))
+    let betList = this.state.betList.concat(this.randomNumber(t))
     this.setState({
-      list:list,
-      account:list.length*2*this.state.times
+      betList:betList,
+      account:betList.length*2*this.state.times
     })
   }
 
   clearBet=(event)=>{
     this.setState({
-      list:[],
+      betList:[],
       account:0
+    })
+  }
+
+  deleteOneBet(i){
+    let betList = this.state.betList.filter((value,index,self)=>{
+      return index!=i
+    })
+    this.setState({
+      betList:betList,
+      account:betList.length*this.state.price
     })
   }
   
@@ -134,7 +145,7 @@ class Random extends React.Component {
             <div className="random-top-left">
               <table className="random-top-left-table">
                 <tbody>
-                  {this.state.list.map((bet,index)=><Bet key={index} bet={bet}></Bet>)}
+                  {this.state.betList.map((bet,index)=><Bet key={index} index={index} bet={bet} deleteOneBet={this.deleteOneBet}></Bet>)}
                 </tbody>
               </table>
             </div>

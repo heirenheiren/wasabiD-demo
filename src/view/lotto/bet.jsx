@@ -15,19 +15,22 @@ class Bet extends React.Component {
     console.log("Bet")
   }
 
+  remove=(e)=>{
+    this.props.deleteOneBet(this.props.index)
+  }
+
   render() {
     let b=this.handleRenderData(this.props.bet.bball),a=this.handleRenderData(this.props.bet.aball)
-    
     return (
       <tr>
-        <td><span className="list-del" title="删除" data-click="remove($el)">删除</span></td>
+        <td><span className="list-del" title="删除" onClick={this.remove}>删除</span></td>
         <td className="random-top-left-table-td">
           <span className="orange">{b}</span>
           <span className="purple">{a}</span>
           <span className="list-num-info">[ 单式机选 1注 2元 ]</span>
         </td>
-        <td><span class="list-modefy">修改</span></td>
-        <td align="left"><label class="list-zj"><input class="hide" type="checkbox"/></label></td>
+        <td><span className="list-modefy">修改</span></td>
+        <td align="left"><label className="list-zj"><input className="hide" type="checkbox"/></label></td>
       </tr>
     );
   }
