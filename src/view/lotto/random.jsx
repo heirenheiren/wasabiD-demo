@@ -6,6 +6,7 @@ import "./random.css"
 class Random extends React.Component {
   constructor(props) {
     super(props);
+    this.randomNumber = this.randomNumber.bind(this);
     this.deleteOneBet = this.deleteOneBet.bind(this);
 
     this.state = {
@@ -64,7 +65,7 @@ class Random extends React.Component {
   }
 
   randomNumber(t){
-    let rs = new Array()
+    let rs = this.state.betList
     while(true){
       let bball = this.randomBall(5,35)
       let aball = this.randomBall(2,12)
@@ -114,7 +115,8 @@ class Random extends React.Component {
     if(t==10){
       t = this.refs.bet.value
     }
-    let betList = this.state.betList.concat(this.randomNumber(t))
+    //let betList = this.state.betList.concat(this.randomNumber(t)) 为了去重不能拼接了
+    let betList = this.randomNumber(t)
     this.setState({
       betList:betList,
       account:betList.length*2*this.state.times
