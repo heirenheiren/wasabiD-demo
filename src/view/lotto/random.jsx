@@ -1,5 +1,6 @@
 import React from 'react'
 import Bet from './bet'
+import {cmn} from './tools'
 import "./random.css"
 
 
@@ -20,6 +21,28 @@ class Random extends React.Component {
 
   componentDidMount(){
     console.log("Random")
+  }
+
+  renderBets(bs,as){
+    if(bs.length>=5&&as.length>=2){
+      let br = cmn(bs,5)
+      let ar = cmn(as,2)
+
+      let rs = new Array()
+
+      for(let i=0;i<=br.length;i++){
+        for(let j=0;j<=ar.length;j++){
+          let r={"bball":br[i],"aball":ar[j]}
+          console.log(r)
+          rs.push(r)
+          if(rs.length==10)break
+        }
+      }
+
+      // this.setState({
+      //   betList:rs.concat(this.state.betList)
+      // })
+    }
   }
 
   changeTimes=(type,event)=>{
