@@ -54,7 +54,7 @@ class Random extends React.Component {
       a.push(r);
       if(a.length==n) break
     }
-    console.log(a)
+    //console.log(a)
     return a
   }
 
@@ -66,6 +66,7 @@ class Random extends React.Component {
 
   randomNumber(t){
     let rs = this.state.betList
+    let l = rs.length//初始长度
     while(true){
       let bball = this.randomBall(5,35)
       let aball = this.randomBall(2,12)
@@ -105,17 +106,18 @@ class Random extends React.Component {
       let r={"bball":bball,"aball":aball}
       rs.push(r)
 
-      if(rs.length==t) break
+      if(rs.length-l==t) break
     }
     //console.log(rs)
     return rs
   }
 
   random=(t,event)=>{
-    if(t==10){
+    window.onselectstart = function(){return false}
+    if(t==10){//特殊处理
       t = this.refs.bet.value
     }
-    //let betList = this.state.betList.concat(this.randomNumber(t)) 为了去重不能拼接了
+    //let betList = this.state.betList.concat(this.randomNumber(t))机选去重处理不再需要拼接
     let betList = this.randomNumber(t)
     this.setState({
       betList:betList,
@@ -124,6 +126,7 @@ class Random extends React.Component {
   }
 
   clearBet=(event)=>{
+    window.onselectstart = function(){return false}
     this.setState({
       betList:[],
       account:0

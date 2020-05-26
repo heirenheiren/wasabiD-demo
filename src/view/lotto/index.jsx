@@ -24,7 +24,7 @@ class Index extends React.Component {
   }
 
   chooseBallBackToIndex(chooseNumbers,area){
-    //console.log(chooseNumbers,area)
+    console.log(chooseNumbers.sort(),area)
     let count=0
     if(area=="before"){
       this.setState({
@@ -32,7 +32,8 @@ class Index extends React.Component {
       })
       if(chooseNumbers.length>=5&&this.state.chooseAfterNumbers>=2){
         count = this.combinatorialNumber(chooseNumbers.length,5)*this.combinatorialNumber(this.state.chooseAfterNumbers,2)
-        
+        //todo选中号码的打印功能
+        //let betNum = Number.parseInt("01")
       }
     }
 
@@ -42,6 +43,7 @@ class Index extends React.Component {
       })
       if(chooseNumbers.length>=2&&this.state.chooseBeforeNumbers>=5){
         count = this.combinatorialNumber(chooseNumbers.length,2)*this.combinatorialNumber(this.state.chooseBeforeNumbers,5)
+        //todo选中号码的打印功能
       }
     }
     this.setState({
