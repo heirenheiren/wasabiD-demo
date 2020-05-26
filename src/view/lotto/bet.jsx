@@ -36,14 +36,23 @@ class Bet extends React.Component {
   }
 
   handleRenderData(d){
-    let b=""
+    let a = new Array()
     for(let index=0;index<d.length;index++){
       if(d[index]<10){
-        b=b+"0"+d[index]
+        a.push("0"+d[index])
       }else{
-        b=b+d[index]
+        a.push(d[index])
       }
-      if(index!=d.length-1) b+=","
+    }
+    a.sort()
+
+    let b=""
+    for(let index=0;index<a.length;index++){
+      if(index!=a.length-1){
+        b+=a[index]+","
+      }else{
+        b+=a[index]
+      }
     }
     return b
   }
