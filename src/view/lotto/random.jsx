@@ -11,7 +11,8 @@ class Random extends React.Component {
       betNum:10,
       times:1,
       list:[],
-      account:0
+      account:0,
+      price:2.00
     };
   }
 
@@ -31,9 +32,11 @@ class Random extends React.Component {
     }else{
       times = value>999?999:value
     }
+    times = times<=1?1:times
     this.setState({
       times:times,
-      account:this.state.list.length*2*times
+      account:this.state.list.length*2*times,
+      price:2*times
     })
   }
 
@@ -155,7 +158,7 @@ class Random extends React.Component {
                 <span className="random-bottom-left-numsel_r" onClick={this.changeTimes.bind(this,"add")}> + </span> 
               </div>
             </div>
-            <span className="random-bottom-right">金额 <em className="red">2.00</em>元&nbsp;&nbsp;(<span>1</span>注) &nbsp;&nbsp;共 <em className="red">{this.state.account}</em> 元</span>
+            <span className="random-bottom-right">金额 <em className="red">{this.state.price}</em>元&nbsp;&nbsp;(<span>1</span>注) &nbsp;&nbsp;共 <em className="red">{this.state.account}</em> 元</span>
           </div>
        </div>
     );

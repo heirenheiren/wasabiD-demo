@@ -57,6 +57,7 @@ class Before extends React.Component {
   }
 
   onChooseClick=(e)=>{
+    window.onselectstart = function(){return false}
     var myselect=document.getElementById("selectBefore")
     var index=myselect.selectedIndex 
     let v = myselect.options[index].value
