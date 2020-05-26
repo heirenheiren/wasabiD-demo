@@ -46,15 +46,15 @@ class Bet extends React.Component {
     }
     a.sort()
 
-    let b=""
-    for(let index=0;index<a.length;index++){
-      if(index!=a.length-1){
-        b+=a[index]+","
-      }else{
-        b+=a[index]
-      }
-    }
-    return b
+    // let b=""
+    // for(let index=0;index<a.length;index++){
+    //   if(index!=a.length-1){
+    //     b+=a[index]+","
+    //   }else{
+    //     b+=a[index]
+    //   }
+    // }
+    return a.join()
   }
 }
 
