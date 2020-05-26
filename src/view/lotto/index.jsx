@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import Before from './before'
 import After from './after'
 import Count from './count'
 import Random from './random'
-import "./index.css";
+import "./index.css"
+import {cmn} from './tools'
 
 
 class Index extends React.Component {
@@ -35,6 +36,10 @@ class Index extends React.Component {
         //todo选中号码的打印功能
         //let betNum = Number.parseInt("01")
         //console.log(chooseNumbers,area)
+        let b = cmn(chooseNumbers,5)
+        let a = cmn(this.state.chooseAfterNumbers,2)
+        console.log(b)
+        console.log(a)
       }
     }
 
