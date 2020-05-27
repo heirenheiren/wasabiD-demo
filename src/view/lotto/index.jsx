@@ -36,10 +36,10 @@ class Index extends React.Component {
         //todo选中号码的打印功能
         //let betNum = Number.parseInt("01")
         //console.log(chooseNumbers,area)
-        let b = cmn(chooseNumbers,5)
-        let a = cmn(this.state.chooseAfterNumbers,2)
+        let b = this.combin(chooseNumbers,5)
+        
         console.log(b)
-        console.log(a)
+       
       }
     }
 
@@ -55,6 +55,19 @@ class Index extends React.Component {
     this.setState({
       count:count.toFixed(0)
     })
+  }
+
+  combin(data,n,currentIndex=0,chooseArr=[],result=[],m=1){
+    for(let i = currentIndex;i<data.length;i++){
+          if(m===n){
+                result.push([...chooseArr,data[i]])
+          }
+          if(m>n){
+            break
+          }
+          this.combin(data,n,i+1,[...chooseArr,data[i],result,m+1])
+    }
+    return result
   }
 
   render() {
