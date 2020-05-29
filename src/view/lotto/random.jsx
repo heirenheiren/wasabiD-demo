@@ -8,6 +8,7 @@ class Random extends React.Component {
     super(props);
     this.randomNumber = this.randomNumber.bind(this);
     this.deleteOneBet = this.deleteOneBet.bind(this);
+    this.updateBetList = this.updateBetList.bind(this);
 
     this.state = {
       beforeBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"],
@@ -22,6 +23,12 @@ class Random extends React.Component {
 
   componentDidMount(){
     console.log("Random")
+  }
+
+  updateBetList(betList){
+    this.setState({
+      betList:this.state.betList.length==0?betList:betList.concat(this.state.betList)
+    })
   }
 
   changeTimes=(type,event)=>{
@@ -104,7 +111,7 @@ class Random extends React.Component {
 
       if(flag) continue
       
-      let r={"bball":bball,"aball":aball}
+      let r={"bball":bball.sort(),"aball":aball.sort()}
       rs.push(r)
 
       if(rs.length-l==t) break
@@ -134,6 +141,7 @@ class Random extends React.Component {
     })
   }
 
+  //删除点击选中的下标，并更新总金额
   deleteOneBet(i){
     let betList = this.state.betList.filter((value,index,self)=>{
       return index!=i

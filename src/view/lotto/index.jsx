@@ -18,8 +18,7 @@ class Index extends React.Component {
       chooseAfterNumber:[],
       chooseBeforeCount:0,
       chooseAfterCount:0,
-      count:0,
-      betList:[]
+      count:0
     };
   }
 
@@ -42,6 +41,7 @@ class Index extends React.Component {
         //let betNum = Number.parseInt("01")
         let b = Tools.combin(chooseNumbers,5)
         betList = this.renderBets(b,this.state.chooseAfterNumber)
+        this.refs.random.updateBetList(betList)
       }
     }
 
@@ -54,12 +54,13 @@ class Index extends React.Component {
         count = this.combinatorialNumber(chooseNumbers.length,2)*this.combinatorialNumber(this.state.chooseBeforeCount,5)
         //todo选中号码的打印功能
         let a = Tools.com(chooseNumbers,2)
-        betList = this.renderBets(a,this.state.chooseBeforeNumber)
+        betList = this.renderBets(this.state.chooseBeforeNumber,a)
+        this.refs.random.updateBetList(betList)
       }
     }
+
     this.setState({
-      count:count.toFixed(0),
-      betList:betList
+      count:count.toFixed(0)
     })
   }
 
@@ -67,11 +68,11 @@ class Index extends React.Component {
     let rs = new Array()
     for(let i=0;i<bs.length;i++){
       for(let j=0;j<as.length;j++){
-        console.log(bs[i],as[j])
         rs.push({"bball":bs[i],"aball":as[j]})
-        if(rs.length==10) break
+        //if(rs.length==10) break
       }
     }
+    //console.log(rs)
     return rs
   }
 
@@ -83,7 +84,7 @@ class Index extends React.Component {
             <After chooseBallBackToIndex={this.chooseBallBackToIndex}></After>
           </div>
           <Count choose={this.state}></Count>
-          <Random></Random>
+          <Random ref="random"></Random>
        </div>
     );
   }

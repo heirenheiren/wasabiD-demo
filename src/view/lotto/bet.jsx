@@ -23,8 +23,8 @@ class Bet extends React.Component {
       <tr>
         <td><span className="list-del" title="删除" onClick={this.remove}>删除</span></td>
         <td className="random-top-left-table-td">
-          <span className="orange">{this.props.bet.bball.sort().join()}</span>
-          <span className="purple">{this.props.bet.aball.sort().join()}</span>
+          <span className="orange">{this.props.bet.bball.join()}</span>
+          <span className="purple">{this.props.bet.aball.join()}</span>
           <span className="list-num-info">[ 单式机选 1注 2元 ]</span>
         </td>
         <td><span className="list-modefy">修改</span></td>
