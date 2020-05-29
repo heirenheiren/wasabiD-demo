@@ -1,6 +1,5 @@
 import React from 'react'
 import Bet from './bet'
-import {cmn} from './tools'
 import "./random.css"
 
 
@@ -11,6 +10,8 @@ class Random extends React.Component {
     this.deleteOneBet = this.deleteOneBet.bind(this);
 
     this.state = {
+      beforeBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"],
+      afterBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12"],
       betNum:10,
       times:1,
       betList:[],
@@ -21,28 +22,6 @@ class Random extends React.Component {
 
   componentDidMount(){
     console.log("Random")
-  }
-
-  renderBets(bs,as){
-    if(bs.length>=5&&as.length>=2){
-      let br = cmn(bs,5)
-      let ar = cmn(as,2)
-
-      let rs = new Array()
-
-      for(let i=0;i<=br.length;i++){
-        for(let j=0;j<=ar.length;j++){
-          let r={"bball":br[i],"aball":ar[j]}
-          console.log(r)
-          rs.push(r)
-          if(rs.length==10)break
-        }
-      }
-
-      // this.setState({
-      //   betList:rs.concat(this.state.betList)
-      // })
-    }
   }
 
   changeTimes=(type,event)=>{
@@ -65,12 +44,11 @@ class Random extends React.Component {
     })
   }
 
-  randomBall(n,length){
+  randomBall(n,baseBall){
     let a = new Array()
     if(n==0) return a
     while(true){
-      let r = Math.random()*length|0
-      r++
+      let r = baseBall[Math.random()*(baseBall.length)|0]
       if(a.includes(r)){
         continue
       }
@@ -91,8 +69,8 @@ class Random extends React.Component {
     let rs = this.state.betList
     let l = rs.length//初始长度
     while(true){
-      let bball = this.randomBall(5,35)
-      let aball = this.randomBall(2,12)
+      let bball = this.randomBall(5,this.state.beforeBallNumber)
+      let aball = this.randomBall(2,this.state.afterBallNumber)
 
       let flag = false
       //rs.every((item,index)=>{

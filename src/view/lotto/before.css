@@ -18,6 +18,9 @@
     color: #555555;
     font: 14px;
 }
+.before-number .ball{
+    border: 2px solid#f1f4d7;
+}
 .before-number ul{
     margin: 0 auto;
     padding: 10px 16px 5px;    

@@ -1,5 +1,6 @@
 import React from 'react'
-import Ball from './ball'
+import Number from './number'
+import "./index.css"
 import "./before.css"
 
 class Before extends React.Component {
@@ -11,15 +12,15 @@ class Before extends React.Component {
       chooseBeforeBallNumbers:[],
       selectNumber:[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],
       //beforeBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"]
-      beforeBallNumber:[{"value":"01","check":false},{"value":"02","check":false},{"value":"03","check":false},{"value":"04","check":false},
-                        {"value":"05","check":false},{"value":"06","check":false},{"value":"07","check":false},{"value":"08","check":false},
-                        {"value":"09","check":false},{"value":"10","check":false},{"value":"11","check":false},{"value":"12","check":false},
-                        {"value":"13","check":false},{"value":"14","check":false},{"value":"15","check":false},{"value":"16","check":false},
-                        {"value":"17","check":false},{"value":"18","check":false},{"value":"19","check":false},{"value":"20","check":false},
-                        {"value":"21","check":false},{"value":"22","check":false},{"value":"23","check":false},{"value":"24","check":false},
-                        {"value":"25","check":false},{"value":"26","check":false},{"value":"27","check":false},{"value":"28","check":false},
-                        {"value":"29","check":false},{"value":"30","check":false},{"value":"31","check":false},{"value":"32","check":false},
-                        {"value":"33","check":false},{"value":"34","check":false},{"value":"35","check":false}]
+      beforeBallNumber:[{"value":"01","background":"#fffffb","color":"#555555"},{"value":"02","background":"#fffffb","color":"#555555"},{"value":"03","background":"#fffffb","color":"#555555"},{"value":"04","background":"#fffffb","color":"#555555"},
+                        {"value":"05","background":"#fffffb","color":"#555555"},{"value":"06","background":"#fffffb","color":"#555555"},{"value":"07","background":"#fffffb","color":"#555555"},{"value":"08","background":"#fffffb","color":"#555555"},
+                        {"value":"09","background":"#fffffb","color":"#555555"},{"value":"10","background":"#fffffb","color":"#555555"},{"value":"11","background":"#fffffb","color":"#555555"},{"value":"12","background":"#fffffb","color":"#555555"},
+                        {"value":"13","background":"#fffffb","color":"#555555"},{"value":"14","background":"#fffffb","color":"#555555"},{"value":"15","background":"#fffffb","color":"#555555"},{"value":"16","background":"#fffffb","color":"#555555"},
+                        {"value":"17","background":"#fffffb","color":"#555555"},{"value":"18","background":"#fffffb","color":"#555555"},{"value":"19","background":"#fffffb","color":"#555555"},{"value":"20","background":"#fffffb","color":"#555555"},
+                        {"value":"21","background":"#fffffb","color":"#555555"},{"value":"22","background":"#fffffb","color":"#555555"},{"value":"23","background":"#fffffb","color":"#555555"},{"value":"24","background":"#fffffb","color":"#555555"},
+                        {"value":"25","background":"#fffffb","color":"#555555"},{"value":"26","background":"#fffffb","color":"#555555"},{"value":"27","background":"#fffffb","color":"#555555"},{"value":"28","background":"#fffffb","color":"#555555"},
+                        {"value":"29","background":"#fffffb","color":"#555555"},{"value":"30","background":"#fffffb","color":"#555555"},{"value":"31","background":"#fffffb","color":"#555555"},{"value":"32","background":"#fffffb","color":"#555555"},
+                        {"value":"33","background":"#fffffb","color":"#555555"},{"value":"34","background":"#fffffb","color":"#555555"},{"value":"35","background":"#fffffb","color":"#555555"}]
     }
   }
 
@@ -42,7 +43,9 @@ class Before extends React.Component {
     this.setState(({chooseBeforeBallNumbers})=>(
       {
         beforeBallNumber:this.state.beforeBallNumber.map(item=>{
-          this.refs[item.value].checkBall(false)
+          item.background="#fffffb"
+          item.color="#555555"
+          this.refs[item.value].clearAll()
           return item;
         }),
         chooseBeforeBallNumbers:[]
@@ -62,20 +65,26 @@ class Before extends React.Component {
 
     let newChooseBeforeBallNumbers = new Array()
     let newbeforeBallNumber = this.state.beforeBallNumber.map((item,i)=>{
-      let check=false
       if(v<30){
         if(a.includes(i)){
           newChooseBeforeBallNumbers.push(item.value)
-          check=true
+          item.background="#ff5b1a"
+          item.color="#ffffff"
+        }else{
+          item.background="#fffffb"
+          item.color="#555555"
         }
       }else{
-        if(!a.includes(i)){
+        if(a.includes(i)){
+          item.background="#fffffb"
+          item.color="#555555"
+        }else{
           newChooseBeforeBallNumbers.push(item.value)
-          check=true
+          item.background="#ff5b1a"
+          item.color="#ffffff"
         }
       }
-
-      this.refs[item.value].checkBall(check)
+      
       return item
     })
 
@@ -110,7 +119,7 @@ class Before extends React.Component {
           </div>
           <div className="before-number">
             <ul>
-              {this.state.beforeBallNumber.map(number=><Ball key={number.value} ref={number.value} number={number} style="before" chooseBallBack={this.chooseBallBack}></Ball>)}
+              {this.state.beforeBallNumber.map(number=><Number key={number.value} ref={number.value} number={number} borderColor="before" chooseBallBack={this.chooseBallBack}></Number>)}
             </ul>
           </div>
           <div className="before-choose">

@@ -5,7 +5,7 @@ import After from './after'
 import Count from './count'
 import Random from './random'
 import "./index.css"
-import {cmn} from './tools'
+import Tools from './tools'
 
 
 class Index extends React.Component {
@@ -14,9 +14,12 @@ class Index extends React.Component {
     this.chooseBallBackToIndex = this.chooseBallBackToIndex.bind(this);
     
     this.state = {
-      chooseBeforeNumbers:0,
-      chooseAfterNumbers:0,
-      count:0
+      chooseBeforeNumber:[],
+      chooseAfterNumber:[],
+      chooseBeforeCount:0,
+      chooseAfterCount:0,
+      count:0,
+      betList:[]
     };
   }
 
@@ -27,47 +30,49 @@ class Index extends React.Component {
   chooseBallBackToIndex(chooseNumbers,area){
     chooseNumbers.sort()
     let count=0
+    let betList=[]
     if(area=="before"){
       this.setState({
-        chooseBeforeNumbers:chooseNumbers.length
+        chooseBeforeCount:chooseNumbers.length,
+        chooseBeforeNumber:chooseNumbers.length>=5?Tools.combin(chooseNumbers,5):[]
       })
-      if(chooseNumbers.length>=5&&this.state.chooseAfterNumbers>=2){
-        count = this.combinatorialNumber(chooseNumbers.length,5)*this.combinatorialNumber(this.state.chooseAfterNumbers,2)
+      if(chooseNumbers.length>=5&&this.state.chooseAfterCount>=2){
+        count = this.combinatorialNumber(chooseNumbers.length,5)*this.combinatorialNumber(this.state.chooseAfterCount,2)
         //todo选中号码的打印功能
         //let betNum = Number.parseInt("01")
-        //console.log(chooseNumbers,area)
-        let b = this.combin(chooseNumbers,5)
-        
-        console.log(b)
-       
+        let b = Tools.combin(chooseNumbers,5)
+        betList = this.renderBets(b,this.state.chooseAfterNumber)
       }
     }
 
     if(area=="after"){
       this.setState({
-        chooseAfterNumbers:chooseNumbers.length
+        chooseAfterCount:chooseNumbers.length,
+        chooseAfterNumber:chooseNumbers.length>=2?Tools.combin(chooseNumbers,2):[]
       })
-      if(chooseNumbers.length>=2&&this.state.chooseBeforeNumbers>=5){
-        count = this.combinatorialNumber(chooseNumbers.length,2)*this.combinatorialNumber(this.state.chooseBeforeNumbers,5)
+      if(chooseNumbers.length>=2&&this.state.chooseBeforeCount>=5){
+        count = this.combinatorialNumber(chooseNumbers.length,2)*this.combinatorialNumber(this.state.chooseBeforeCount,5)
         //todo选中号码的打印功能
+        let a = Tools.com(chooseNumbers,2)
+        betList = this.renderBets(a,this.state.chooseBeforeNumber)
       }
     }
     this.setState({
-      count:count.toFixed(0)
+      count:count.toFixed(0),
+      betList:betList
     })
   }
 
-  combin(data,n,currentIndex=0,chooseArr=[],result=[],m=1){
-    for(let i = currentIndex;i<data.length;i++){
-          if(m===n){
-                result.push([...chooseArr,data[i]])
-          }
-          if(m>n){
-            break
-          }
-          this.combin(data,n,i+1,[...chooseArr,data[i],result,m+1])
+  renderBets(bs,as){
+    let rs = new Array()
+    for(let i=0;i<bs.length;i++){
+      for(let j=0;j<as.length;j++){
+        console.log(bs[i],as[j])
+        rs.push({"bball":bs[i],"aball":as[j]})
+        if(rs.length==10) break
+      }
     }
-    return result
+    return rs
   }
 
   render() {

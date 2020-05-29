@@ -1,5 +1,6 @@
 import React from 'react'
-import Ball from './ball'
+import Number from './number'
+import "./index.css"
 import "./after.css"
 
 class After extends React.Component {
@@ -11,12 +12,12 @@ class After extends React.Component {
       chooseAfterBallNumbers:[],
       selectNumber:[2,3,4,5,6,7,8,9,10,11,12],
       //afterBallNumber:["01","02","03","04","05","06","07","08","09","10","11","12"]
-      afterBallNumber:[{"value":"01","check":false},{"value":"02","check":false},
-                       {"value":"03","check":false},{"value":"04","check":false},
-                       {"value":"05","check":false},{"value":"06","check":false},
-                       {"value":"07","check":false},{"value":"08","check":false},
-                       {"value":"09","check":false},{"value":"10","check":false},
-                       {"value":"11","check":false},{"value":"12","check":false}]
+      afterBallNumber:[{"value":"01","background":"#f6fbff","color":"#555555"},{"value":"02","background":"#f6fbff","color":"#555555"},
+                       {"value":"03","background":"#f6fbff","color":"#555555"},{"value":"04","background":"#f6fbff","color":"#555555"},
+                       {"value":"05","background":"#f6fbff","color":"#555555"},{"value":"06","background":"#f6fbff","color":"#555555"},
+                       {"value":"07","background":"#f6fbff","color":"#555555"},{"value":"08","background":"#f6fbff","color":"#555555"},
+                       {"value":"09","background":"#f6fbff","color":"#555555"},{"value":"10","background":"#f6fbff","color":"#555555"},
+                       {"value":"11","background":"#f6fbff","color":"#555555"},{"value":"12","background":"#f6fbff","color":"#555555"}]
     }
   }
 
@@ -38,7 +39,9 @@ class After extends React.Component {
     this.setState(({chooseBeforeBallNumbers})=>(
       {
         afterBallNumber:this.state.afterBallNumber.map(item=>{
-          this.refs[item.value].checkBall(false)
+          item.background="#f6fbff"
+          item.color="#555555"
+          this.refs[item.value].clearAll()
           return item
         }),
         chooseAfterBallNumbers:[]
@@ -58,20 +61,25 @@ class After extends React.Component {
 
     let newChooseAfterBallNumbers = new Array()
     let newAfterBallNumber = this.state.afterBallNumber.map((item,i)=>{
-      let check=false
       if(v<10){
         if(a.includes(i)){
           newChooseAfterBallNumbers.push(item.value)
-          check=true
+          item.background="#6857ca"
+          item.color="#ffffff"
+        }else{
+          item.background="#f6fbff"
+          item.color="#555555"
         }
       }else{
-        if(!a.includes(i)){
+        if(a.includes(i)){
+          item.background="#f6fbff"
+          item.color="#555555"
+        }else{
           newChooseAfterBallNumbers.push(item.value)
-          check=true
+          item.background="#6857ca"
+          item.color="#ffffff"
         }
       }
-
-      this.refs[item.value].checkBall(check)
       return item
     })
 
@@ -106,7 +114,7 @@ class After extends React.Component {
           </div>
           <div className="after-number">
             <ul>
-              {this.state.afterBallNumber.map(number=><Ball key={number.value} ref={number.value} number={number} style="after" chooseBallBack={this.chooseBallBack}></Ball>)}
+              {this.state.afterBallNumber.map(number=><Number key={number.value} ref={number.value} number={number} borderColor="after" chooseBallBack={this.chooseBallBack}></Number>)}
             </ul>
           </div>
           <div className="after-choose">

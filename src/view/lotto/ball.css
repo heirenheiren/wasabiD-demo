@@ -1,0 +1,36 @@
+.number{
+    width: 38px;
+    padding: 0px 4px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+}
+.number .ball{
+    display: inline-block;
+    zoom: 1;
+    height: 34px;
+    width: 34px;
+    margin: 0 auto;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 39px;
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: 700;
+    user-select: none;
+}
+.number .before{
+    background: #ff5b1a;
+    color: #ffffff;
+}
+.number .after{
+    background: #6857ca;
+    color: #ffffff;
+}
+.times{
+    font-size: 12px;
+    width: 45px;
+    padding: 2px 0px;
+    color:#a5a5a5;
+}
