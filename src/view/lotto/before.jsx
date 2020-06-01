@@ -38,6 +38,7 @@ class Before extends React.Component {
     })
   }
 
+  //清理选中的号码，并把号码的状态还原，把父组件的号码也清理
   onClearClick=(e)=>{
     this.setState(({chooseBeforeBallNumbers})=>(
       {
@@ -53,6 +54,7 @@ class Before extends React.Component {
     })
   }
 
+  //前面三十个随机，大于30则随机生成大于三十的号码并抛弃剩余就是需要的号码，重置state选中的号码和状态，并把状态传给子组件，把选中的号码传给父组件
   onChooseClick=(e)=>{
     window.onselectstart = function(){return false}
     var myselect=document.getElementById("selectBefore")
@@ -74,7 +76,7 @@ class Before extends React.Component {
           check=true
         }
       }
-
+      //更新子组件状态
       this.refs[item.value].checkBall(check)
       return item
     })
@@ -87,6 +89,7 @@ class Before extends React.Component {
     })
   }
 
+  //随机生成入参个数的号码
   randomNumber(v){
     let a = new Array()
     if(v==0)return a

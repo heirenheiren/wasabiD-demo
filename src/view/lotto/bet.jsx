@@ -14,6 +14,7 @@ class Bet extends React.Component {
     console.log("Bet")
   }
 
+  //调用父类删除方法
   remove=(e)=>{
     this.props.deleteOneBet(this.props.index)
   }

@@ -25,12 +25,55 @@ class Random extends React.Component {
     console.log("Random")
   }
 
-  updateBetList(betList){
+  //由父类调用更新下注数组，并去重
+  updateBetList(bets){
+    let betArr = new Array()
+    if(this.state.betList.length!=0){
+      for(let X of bets){
+        let bx = X.bball
+        let ax = X.aball
+
+        let flag
+        for(let Y of this.state.betList){
+          let by = Y.bball
+          let ay = Y.aball
+
+          let bn=0
+          bx.forEach(m=>{
+            by.forEach(n=>{
+              if(m==n){
+                bn++
+              }
+            })
+          })
+
+          let an=0
+          ax.forEach(m=>{
+            ay.forEach(n=>{
+              if(m==n){
+                an++
+              }
+            })
+          })
+
+          if(bn==5&&an==2){
+            console.log(X,Y)
+            flag = true
+            break
+          }
+        }
+        if(flag) continue
+        betArr.push(X)
+      }
+    }
+    let betList = this.state.betList.length==0?bets:betArr.concat(this.state.betList)
     this.setState({
-      betList:this.state.betList.length==0?betList:betList.concat(this.state.betList)
+      betList:betList,
+      account:betList.length*2*this.state.times
     })
   }
 
+  //下注金额的倍数，加一减一和自动输入，不能大于999小于1，并更新总金额
   changeTimes=(type,event)=>{
     let input = this.refs.times
     let value = input.value 
@@ -51,6 +94,14 @@ class Random extends React.Component {
     })
   }
 
+  //机选改变输入框的值
+  onChangeBet=(e)=>{
+    this.setState({
+      betNum:this.refs.bet.value
+    })
+  }
+
+  //从一个数组随机选取N个数字
   randomBall(n,baseBall){
     let a = new Array()
     if(n==0) return a
@@ -66,12 +117,7 @@ class Random extends React.Component {
     return a
   }
 
-  onChangeBet=(e)=>{
-    this.setState({
-      betNum:this.refs.bet.value
-    })
-  }
-
+  //随机生成一注，并跟现有的投注做比较是否有重复，前面5个数字和后面两个数字单独比较，如果都相等则跳过，继续随机生成下一注，直到数组元素打到入参要求的个数
   randomNumber(t){
     let rs = this.state.betList
     let l = rs.length//初始长度
@@ -120,8 +166,9 @@ class Random extends React.Component {
     return rs
   }
 
+  //传入多少个随机生成多少注
   random=(t,event)=>{
-    window.onselectstart = function(){return false}
+    window.onselectstart = function(){return false}//防止鼠标选中文字变绿色
     if(t==10){//特殊处理
       t = this.refs.bet.value
     }
@@ -133,6 +180,7 @@ class Random extends React.Component {
     })
   }
 
+  //清理投注的彩票，号码列表和金额都清空
   clearBet=(event)=>{
     window.onselectstart = function(){return false}
     this.setState({
@@ -141,7 +189,7 @@ class Random extends React.Component {
     })
   }
 
-  //删除点击选中的下标，并更新总金额
+  //子组件调用的方法，把选中的投注ID从号码列表删除，并更新总金额
   deleteOneBet(i){
     let betList = this.state.betList.filter((value,index,self)=>{
       return index!=i
@@ -153,6 +201,7 @@ class Random extends React.Component {
   }
   
   render() {
+    //<input type="text" defaultValue="10注" ref={input => this.input = input}></input>
     return (
       <div className="random">
           <div className="random-top">

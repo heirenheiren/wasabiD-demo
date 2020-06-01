@@ -23,6 +23,7 @@ class Count extends React.Component {
     );
   }
 
+  //数字格式处理，保留两位小数，每三位逗号隔离没实现
   numFormat(num) {
     let f = Number(num).toFixed(2)
     var c = (f.toString().indexOf ('.') !== -1) ? f.toLocaleString() : f.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');

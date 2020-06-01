@@ -26,10 +26,10 @@ class Index extends React.Component {
     console.log("Index")
   }
 
+  //接收子组件选择的号码，更新state的选中号码个数和这些球的所有组合，当前后个数都符合要求则计算前后号码的组合组成的所有投注和数量，并把所有可能的投注传给子组件展示
   chooseBallBackToIndex(chooseNumbers,area){
     chooseNumbers.sort()
     let count=0
-    let betList=[]
     if(area=="before"){
       this.setState({
         chooseBeforeCount:chooseNumbers.length,
@@ -40,8 +40,7 @@ class Index extends React.Component {
         //todo选中号码的打印功能
         //let betNum = Number.parseInt("01")
         let b = Tools.combin(chooseNumbers,5)
-        betList = this.renderBets(b,this.state.chooseAfterNumber)
-        this.refs.random.updateBetList(betList)
+        this.refs.random.updateBetList(this.renderBets(b,this.state.chooseAfterNumber))
       }
     }
 
@@ -54,8 +53,7 @@ class Index extends React.Component {
         count = this.combinatorialNumber(chooseNumbers.length,2)*this.combinatorialNumber(this.state.chooseBeforeCount,5)
         //todo选中号码的打印功能
         let a = Tools.com(chooseNumbers,2)
-        betList = this.renderBets(this.state.chooseBeforeNumber,a)
-        this.refs.random.updateBetList(betList)
+        this.refs.random.updateBetList(this.renderBets(this.state.chooseBeforeNumber,a))
       }
     }
 
@@ -64,6 +62,7 @@ class Index extends React.Component {
     })
   }
 
+  //把投注前后号码的组合再组成所有的投注
   renderBets(bs,as){
     let rs = new Array()
     for(let i=0;i<bs.length;i++){

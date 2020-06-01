@@ -15,6 +15,7 @@ export default class Ball extends React.Component {
     console.log("Ball")
   }
 
+  //点击球，并把号码传给父组件
   onClick=(e)=>{
     this.setState(preState=>({
       check:!preState.check
@@ -23,6 +24,7 @@ export default class Ball extends React.Component {
     })
   }
 
+  //改变球的状态，供调用方使用
   checkBall(check){
     this.setState({
       check:check
