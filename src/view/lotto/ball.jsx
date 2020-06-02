@@ -1,8 +1,11 @@
-import React from 'react';
+import React,{Component} from 'react';
+import { string, object } from 'prop-types'
 import "./ball.css";
 
 
-export default class Ball extends React.Component {
+export default class Ball extends Component {
+  state = {expanded:15}
+  
   constructor(props) {
     super(props);
 
